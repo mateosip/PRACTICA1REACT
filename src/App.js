@@ -12,14 +12,17 @@ class App extends Component {
     ...Data,
     statusFilter: 0,
     vistaMaximizada: 0,
-    filterName: ""
+    filterName: "",
+    
   };
+  
 
   nameFilter = name => {
     this.setState({ filterName: name });
   };
-  statusOnClick = numberStatus => {
+  statusOnClick = (numberStatus,numberCharacters) => {
     this.setState({ statusFilter: numberStatus });
+    this.setState({numberCharacters:numberCharacters});
   };
   changeVistaMaximizada = id => {
     this.setState({ vistaMaximizada: id });
@@ -27,6 +30,9 @@ class App extends Component {
   returnOriginal = () => {
     this.setState({ vistaMaximizada: 0 });
   };
+  changeCharacters = (numberCharacters) =>{
+    this.setState({numberCharacters:numberCharacters})
+  }
 
   render() {
     return (
@@ -40,6 +46,8 @@ class App extends Component {
             vistaMaximizada={this.state.vistaMaximizada}
             changeVistaMaximizada={this.changeVistaMaximizada}
             returnOriginal={this.returnOriginal}
+            numberCharacters={this.numberCharacters}
+            changeCharacters={this.changeCharacters}
           />
         </div>
         <div className="Header">
@@ -47,6 +55,7 @@ class App extends Component {
             characters={this.state.results}
             statusOnClick={this.statusOnClick}
             nameFilter={this.nameFilter}
+            numberCharacters={this.state.numberCharacters}
           />
         </div>
       </div>
